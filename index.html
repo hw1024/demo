@@ -28,15 +28,35 @@
 </head>
 <body>
     <div class="box">
-        <div class="btn" id="btn">打开小程序</div>
+<!--        <div class="btn" id="btn">打开小程序</div>-->
+        <wx-open-launch-weapp
+                id="launch-btn"
+                appid="wx12345678"
+                path="pages/home/index?user=123&action=abc"
+        >
+            <script type="text/wxtag-template">
+                <style>.btn { padding: 12px }</style>
+                <button class="btn">打开小程序</button>
+            </script>
+        </wx-open-launch-weapp>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
     <script>
-        $(function () {
-            $('#btn').on("click", function () {
-                window.open("#小程序://iSpotCheck/UUxIlOllugUFYTh");
-            })
-        })
+        var btn = document.getElementById('launch-btn');
+        btn.addEventListener('launch', function (e) {
+            console.log('success');
+        });
+        btn.addEventListener('error', function (e) {
+            console.log('fail', e.detail);
+        });
     </script>
+<!--    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>-->
+<!--    <script>-->
+<!--        $(function () {-->
+<!--            $('#btn').on("click", function () {-->
+<!--                window.open("#小程序://iSpotCheck/UUxIlOllugUFYTh");-->
+<!--            })-->
+<!--        })-->
+<!--    </script>-->
 </body>
 </html>
